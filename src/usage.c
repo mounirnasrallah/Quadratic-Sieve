@@ -15,9 +15,12 @@
 //  http://mounirnasrallah.com
 
 
-#include <sys/ressources.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
-
+/*
 struct rusage statistics;   // Statistics about ressource usage
 
 
@@ -89,3 +92,4 @@ void get_statistics(struct rusage *statistics){
     return EXIT_SUCCESS;
 }
 
+*/

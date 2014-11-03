@@ -14,19 +14,3 @@
 
 
 
-#include <sys/ressource.h>
-
-
-struct rusage statistics;   // Statistics about ressource usage
-
-
-
-
-
-
-int main(int argc, char **argv) {
-
-    
-    
-    
-}

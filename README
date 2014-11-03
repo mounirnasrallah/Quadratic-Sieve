@@ -1,1 +1,17 @@
+
+
+//
+//
+//  Created on August 13, 2014
+//
+//  Author :
+//  NASR ALLAH Mounir - <nasrallah.mounir@gmail.com>
+//  http://mounirnasrallah.com
+
+
+
 Quadratic sieve implementation, during my internship at Paris 6 computer science laboratory (LIP6)
+Using GNU Multiple Precision Arithmetic Library.
+
+
+
