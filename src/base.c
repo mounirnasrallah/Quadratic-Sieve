@@ -22,9 +22,8 @@
 
 
 
-//////
 base_t* insert_list_base(base_t* p, unsigned long int number);
-//////
+
 
 
 void find_modular_roots(base_t* base, mpz_t n){
