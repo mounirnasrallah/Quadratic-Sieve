@@ -69,7 +69,7 @@ void init_smooth_base(uint64_t size_base, smooth_number_t** array, mpz_t composi
 
   for( i = 0; i < size_base; i++){
     smooth_number_t* smooth = create_struct_smooth_number(size_base);
-    mpz_add_ui(smooth->x, square_root_of_composite, number+ i +1);
+    mpz_add_ui(smooth->x, square_root_of_composite, (number * size_base) + i);
     polynomial_f(smooth, smooth->x, composite_number);
     mpz_set(smooth->result, smooth->x);
     array[i] = smooth;
@@ -90,8 +90,8 @@ uint64_t search_index_to_start_sieving(smooth_number_t** smooth_array, uint64_t 
 
   for( i = 0; i < size_base; i++){
     smooth = smooth_array[i];
-    mpz_mod_ui(remainder, smooth->x, prime_number);
-    if(mpz_cmp(remainder, root) == 0){
+//    mpz_mod_ui(remainder, smooth->f_x, prime_number);
+    if(mpz_divisible_ui_p(smooth->f_x, prime_number)){
       return i;
     }
   }
@@ -123,7 +123,7 @@ void sieving_for(uint64_t index, uint64_t prime_number, uint64_t prime_number_po
 }
 
 
-uint64_t extract_smoot_numbers(uint64_t size_base, smooth_number_t** smooth_array, list_smooth_number_t list){
+uint64_t extract_smoot_numbers(uint64_t size_base, smooth_number_t** smooth_array, list_smooth_number_t* list){
 
   uint64_t i;
   uint64_t result = 0;
@@ -133,9 +133,9 @@ uint64_t extract_smoot_numbers(uint64_t size_base, smooth_number_t** smooth_arra
 
     tmp = smooth_array[i];
 
-    if(mpz_cmp_ui(tmp->result, 1)){
+    if(mpz_cmp_ui(tmp->result, 1) == 0){
       insert_list_smooth_number(list, tmp);
-      result++;
+      return 1;
     }
     else{
       free_smooth_number(tmp);
@@ -143,7 +143,7 @@ uint64_t extract_smoot_numbers(uint64_t size_base, smooth_number_t** smooth_arra
 
   }
 
-  return result;
+  return 0;
 }
 
 
@@ -153,6 +153,7 @@ void sieving(base_t** base, uint64_t size_base, smooth_number_t* smooth_array){
   uint64_t i, index;
   base_t* tmp;
 
+#pragma omp for private(tmp, index) // A verifier
   for(i = 0; i < size_base; i++){
 
     tmp = base[i];

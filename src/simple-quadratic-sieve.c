@@ -53,7 +53,7 @@ Usage:\n                                                                \
 
   base_t* base;
 
-  uint64_t number_relation;
+  uint64_t number_relation = 0;
 
   uint64_t size_base;
   uint64_t i;
@@ -94,19 +94,26 @@ Usage:\n                                                                \
   init_base_to_array(base, base_array);
 
   smooth_number_t* b_smooth_array[size_base];
-  list_smooth_number_t* smooth_number_list = NULL;
+
+  list_smooth_number_t smooth_number_list;
+  smooth_number_list.value = NULL;
+  smooth_number_list.next = NULL;
+
+  first_printing_smooth_array();
 
   for( i = 0; number_relation <= size_base; i++){
 
     init_smooth_base(size_base, b_smooth_array, composite_number, square_root_of_composite_number, i);
 
-    printing_smooth_array(b_smooth_array, size_base);
-
     sieving(base_array, size_base, b_smooth_array);
 
-    number_relation += extract_smoot_numbers(size_base,b_smooth_array, smooth_number_list);
+    printing_smooth_array(b_smooth_array, size_base);
+
+    number_relation += extract_smoot_numbers(size_base,b_smooth_array, &smooth_number_list);
 
   }
+
+  printing_final_smooth_number(&smooth_number_list);
 
 
   return EXIT_SUCCESS;

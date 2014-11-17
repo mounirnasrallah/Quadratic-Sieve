@@ -68,7 +68,7 @@ base_t* insert_list_base(base_t* p, unsigned long int number){
 
 
 
-smooth_number_t* insert_list_smooth_number(list_smooth_number_t* list, smooth_number_t* elem){
+void insert_list_smooth_number(list_smooth_number_t* list, smooth_number_t* elem){
 
   list_smooth_number_t* tmp = list;
   list_smooth_number_t* new_element = (list_smooth_number_t*)malloc(sizeof(list_smooth_number_t));
@@ -80,8 +80,9 @@ smooth_number_t* insert_list_smooth_number(list_smooth_number_t* list, smooth_nu
   new_element->value = elem;
   new_element->next = NULL;
 
-  if(tmp == NULL){
-    return elem;
+  if(tmp->value == NULL){
+    tmp->value = elem;
+    tmp->next = NULL;
   }
   else{
 
@@ -90,8 +91,6 @@ smooth_number_t* insert_list_smooth_number(list_smooth_number_t* list, smooth_nu
     }
 
     tmp->next = new_element;
-    return list;
-
   }
 
 }

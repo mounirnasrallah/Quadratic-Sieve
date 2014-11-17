@@ -27,6 +27,7 @@ void sieve_for_number(char* array, unsigned long int number, unsigned long int o
 
   unsigned long int i;
 
+#pragma omp for private(i) // A verifier car pas ++ ??
   for(i = number; i < offset; i+=number){
     set_bit(array, i);
   }
@@ -51,7 +52,8 @@ prime_number_t* eratosthene_sieve( mpz_t offset){
   }
 
 
-    /* Eratosthene sieving */
+  /* Eratosthene sieving */
+#pragma omp for private(i) // A vérifier
   for( i = 2; i < ui_offset; i++){
     if(! get_bit(array, i) ){  // If is prime we sieve
       sieve_for_number(array, i, ui_offset);

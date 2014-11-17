@@ -39,7 +39,6 @@ void find_modular_roots(base_t* base, mpz_t n){
 
     mpz_set_ui(value, tmp->value);
 
-    gmp_printf("%Zd  -  %Zd\n", n, value);
     mpz_sqrtm(tmp->first_root, n, value);
 
     mpz_neg(tmp->second_root, tmp->first_root);
@@ -130,12 +129,13 @@ base_t* init_base(prime_number_t* list, mpz_t n){
 
 void init_base_to_array(base_t* base, base_t** base_array){
 
-  base_t* l = base;
+  base_t* tmp = base;
   uint64_t i = 0;
 
-  while(l != NULL){
-    base_array[i] = l;
-    l = l->next;
+  while(tmp != NULL){
+    base_array[i] = tmp;
+    tmp = tmp->next;
+    i++;
   }
 
 }
