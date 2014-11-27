@@ -2,7 +2,7 @@
 
 /* mpz_sqrtm -- modular square roots using Shanks-Tonelli
 
-Frome : https://gmplib.org/list-archives/gmp-devel/2006-May/000633.html
+From : https://gmplib.org/list-archives/gmp-devel/2006-May/000633.html
 
 Copyright 2006 Free Software Foundation, Inc.
 
